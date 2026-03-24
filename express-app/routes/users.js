@@ -19,6 +19,18 @@ router.get('/', function(req, res, next) {
   });
 });
 
+router.get('/:id', function(req, res, next) {
+  const idUser = req.params.id - 1;
+  if (idUser >= usersList.length){ //у меня id по порядку присваиваются, поэтому такая проверка
+    res.status(404);
+    res.send("User не найден(");
+  }
+
+  else {
+    res.send(usersList[idUser]);
+  }
+});
+
 router.post('/', function(req, res, next){
   const name = req.body.name;
   const newIdUser = usersList.length;
